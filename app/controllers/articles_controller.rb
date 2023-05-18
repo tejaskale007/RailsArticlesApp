@@ -23,6 +23,12 @@ class ArticlesController < ApplicationController
 
     def edit
         @article = Article.find(params[:id])
+        # begin
+        #     raise
+        #     @article = Article.find(params[:id])
+        #     rescue
+        #       flash[:notice] = "Not able to find article"
+        # end
     end
 
     def update 
@@ -33,5 +39,11 @@ class ArticlesController < ApplicationController
         else
             render 'edit'
         end
+    end
+
+    def destroy
+        @article = Article.find(params[:id])
+        @article.destroy
+        redirect_to articles_path
     end
 end
