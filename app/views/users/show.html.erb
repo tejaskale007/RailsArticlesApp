@@ -1,0 +1,10 @@
+<h1><%=  @user.username %> Profile </h1>
+<%= gravatar_for @user, size: 200%>
+
+<h3><%=  @user.username %> Articles </h3>
+  <% @articles.each do |article| %>
+    <%= render article %>
+    <p>
+      <%= link_to "Show this article", article %>
+    </p>
+  <% end %>
