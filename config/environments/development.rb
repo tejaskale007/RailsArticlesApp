@@ -55,10 +55,10 @@ config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'example.com',
-  user_name:            'tejas.kale@coditas.com',
-  password:             'jytulzczgxekckcc',
+  user_name:            'yourmail.com',
+  password:             'password',
   default_options: {
-    to: 'tejaskale648@gmail.com'
+    to: 'defaultMail'
   },
   # user_name:            'waino67@ethereal.email',
   # password:             'pCed8TRjJntRVB25Dz',
