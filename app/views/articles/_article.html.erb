@@ -9,4 +9,10 @@
     <%= article.description %>
   </p>
 
+<p>
+    <% if article.user %>
+    <strong>by:</strong>
+    <%= article.user.username %>
+  </p>
+  <% end%>
 </div>

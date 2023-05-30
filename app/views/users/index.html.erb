@@ -1,0 +1,22 @@
+<h1>All the Bloggers are here </h1>
+
+<div id="users">
+<div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+</div>
+  <% @users.each do |user| %>
+    <p>
+      <%= link_to user.username, user %>
+      <%= link_to gravatar_for(user,size: 150), user %>
+      <%= pluralize(user.articles.count, "article")%>
+      <%= link_to "edit User", edit_user_path(user) %>
+      <%= link_to "View profile", user %>
+      <small><%= time_ago_in_words(user.created_at)%></small>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New article", new_article_path %>
+<div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+</div>

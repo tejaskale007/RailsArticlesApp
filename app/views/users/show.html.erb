@@ -1,10 +1,19 @@
+<%= flash[:notice] %>
+
 <h1><%=  @user.username %> Profile </h1>
 <%= gravatar_for @user, size: 200%>
 
 <h3><%=  @user.username %> Articles </h3>
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+</div>
+<%= link_to "Edit your profile", edit_user_path(@user)%>
   <% @articles.each do |article| %>
     <%= render article %>
     <p>
       <%= link_to "Show this article", article %>
     </p>
   <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+</div>

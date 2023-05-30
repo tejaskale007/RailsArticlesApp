@@ -1,2 +1,9 @@
 <h1>This is home page</h1>
 <%= link_to "Sign up!", signup_path %>
+<%= link_to "Bloggers", users_path %>
+<%= link_to "Articles", articles_path %>
+<% if logged_in? %>
+<%= button_to 'Logout', logout_path, method: :delete %>
+<%else%>
+<%= link_to "Log in", login_path %>
+<%end%>

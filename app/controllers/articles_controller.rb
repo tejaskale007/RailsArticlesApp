@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /articles/1 or /articles/1.json
@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
     @article.user = User.first
     respond_to do |format|
       if @article.save
+        sendArticleCreatedMail(@article)
         format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
         format.json { render :show, status: :created, location: @article }
       else
@@ -33,6 +34,11 @@ class ArticlesController < ApplicationController
       end
     end
   end
+
+  def sendArticleCreatedMail(article)
+    WelcomeMailer.send_welcome_mail(article).deliver_now
+  end
+
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
