@@ -1,0 +1,17 @@
+<%= flash[:notice] %>
+<%= flash[:alert] %>
+
+
+<h3>Categories </h3>
+<div class="flickr_pagination">
+    <%= will_paginate @categories, :container => false %>
+</div>
+  <% @categories.each do |category| %>
+    Category Name: <%= category.name %>
+    <p>
+      <%= link_to "Show this category", category_path(category) %>
+    </p>
+  <% end %>
+  <div class="flickr_pagination">
+    <%= will_paginate @categories, :container => false %>
+</div>

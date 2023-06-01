@@ -8,7 +8,10 @@
   <% @articles.each do |article| %>
     <%= render article %>
     <p>
-      <%= link_to "Show this article", article %>
+      <%= link_to "Show this article", article %>  ||  
+      <% if logged_in? && article.user == current_user %>
+      <%= link_to "Edit this article", edit_article_path(article) %>
+      <% end %>
     </p>
   <% end %>
 </div>

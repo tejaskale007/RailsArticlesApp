@@ -7,7 +7,9 @@
 <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
 </div>
+<% if logged_in? and @user == current_user %>
 <%= link_to "Edit your profile", edit_user_path(@user)%>
+<% end %>
   <% @articles.each do |article| %>
     <%= render article %>
     <p>

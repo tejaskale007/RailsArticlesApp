@@ -2,7 +2,13 @@
 <%= link_to "Sign up!", signup_path %>
 <%= link_to "Bloggers", users_path %>
 <%= link_to "Articles", articles_path %>
+<% if current_user && current_user.admin?%>
+    Profile [<%=current_user.username%>]
+    || <%= link_to "create new category", new_category_path%>
+<% end %>
+<%= link_to "view categories", categories_path%>
 <% if logged_in? %>
+<%= button_to 'Delete User', user_path(current_user), method: :delete, data: {confirm: "Are you share" } %>
 <%= button_to 'Logout', logout_path, method: :delete %>
 <%else%>
 <%= link_to "Log in", login_path %>

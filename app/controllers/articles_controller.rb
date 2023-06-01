@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
-
+  before_action :require_user, except: [ :show, :index ]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # GET /articles or /articles.json
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -36,7 +37,7 @@ class ArticlesController < ApplicationController
   end
 
   def sendArticleCreatedMail(article)
-    WelcomeMailer.send_welcome_mail(article).deliver_now
+    # WelcomeMailer.send_welcome_mail(article).deliver_now
   end
 
 
@@ -71,6 +72,13 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, category_ids: [])
+    end
+
+    def require_same_user
+      if current_user != @article.user
+        flash[:alert] = "You can only edit or delete your own article"
+        redirect_to @article
+      end
     end
 end

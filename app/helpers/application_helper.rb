@@ -7,8 +7,4 @@ module ApplicationHelper
         gravatarUrl = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
         image_tag(gravatarUrl, alt: user.username)
     end
-
-    def logged_in?
-        !!current_user #current user is present or not, that will be returened in boolean form using !!
-    end
 end
